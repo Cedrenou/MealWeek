@@ -1,5 +1,5 @@
 <template>
-  <table class="table-fixed mx-auto">
+  <table class="table-fixed mx-auto w-full border-collapse">
     <thead>
       <tr>
         <th
@@ -13,34 +13,20 @@
     </thead>
 
     <tbody>
-      <tr>
-        <th class="border-purple-950 border-l-0 border-2">Midi</th>
+      <tr v-for="mealTime in ['lunch', 'dinner']" :key="mealTime">
+        <th class="border-purple-950 border-l-0 border-2">
+          {{ mealTime === "lunch" ? "Midi" : "Soir" }}
+        </th>
         <td
           v-for="day in mockMenu"
-          :key="`lunch-${day.id}`"
-          class="border-purple-950 border-2"
+          :key="`${mealTime}-${day.id}`"
+          class="border-purple-950 border-2 last-of-type:border-r-0 p-2 cursor-pointer hover:animate-pulse"
+          @click="openFormModal(mealTime, day.date)"
         >
           <p>{{ day.lunch.meal }}</p>
           <a
-            v-if="day.lunch.url"
-            :href="day.lunch.url"
-            target="_blank"
-            class="text-blue-600 hover:underline"
-            >(Voir la recette)</a
-          >
-        </td>
-      </tr>
-      <tr>
-        <th class="border-purple-950 border-l-0 border-2">Soir</th>
-        <td
-          v-for="day in mockMenu"
-          :key="`dinner-${day.id}`"
-          class="border-purple-950 border-2"
-        >
-          <p>{{ day.dinner.meal }}</p>
-          <a
-            v-if="day.dinner.url"
-            :href="day.dinner.url"
+            v-if="day[mealTime].url"
+            :href="day[mealTime].url"
             target="_blank"
             class="text-blue-600 hover:underline"
             >(Voir la recette)</a
@@ -64,6 +50,11 @@ const days = [
   "Samedi",
   "Dimanche",
 ];
+
+function openFormModal(mealTime, date) {
+  console.log("Meal Time :", mealTime);
+  console.log("Date :", date);
+}
 
 const mockMenu = ref([
   {

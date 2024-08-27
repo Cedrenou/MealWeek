@@ -2,14 +2,7 @@
 </script>
 
 <template>
-  <header>
-  </header>
-
-  <main>
-    <h1>Meal week</h1>
-  </main>
+    <h1 class="text-8xl font-bold underline">
+      Hello world!
+    </h1>
 </template>
-
-<style scoped>
-
-</style>

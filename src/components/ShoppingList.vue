@@ -11,7 +11,15 @@
       />
 
       <div class="py-4 text-nowrap">
-        <label for="V">Vrac</label>
+        <label
+          for="V"
+          class="border-2 bg-[#3b82f6] p-2 mx-2 rounded cursor-pointer text-white"
+          :class="{
+            'border-4 border-purple-800': shoppingForm.tag === 'V',
+          }"
+        >
+          <span> Vrac </span>
+        </label>
         <input
           type="radio"
           id="V"
@@ -19,9 +27,17 @@
           v-model="shoppingForm.tag"
           name="shoppingTag"
           required
+          class="hidden"
         />
 
-        <label for="D">Drive</label>
+        <label
+          for="D"
+          class="border-2 bg-[#f59e0b] p-2 mx-2 rounded cursor-pointer text-white"
+          :class="{
+            'border-4 border-purple-800': shoppingForm.tag === 'D',
+          }"
+          >Drive</label
+        >
         <input
           type="radio"
           id="D"
@@ -29,9 +45,17 @@
           v-model="shoppingForm.tag"
           name="shoppingTag"
           required
+          class="hidden"
         />
 
-        <label for="M">Marché</label>
+        <label
+          for="M"
+          class="border-2 bg-[#10b981] p-2 mx-2 rounded cursor-pointer text-white"
+          :class="{
+            'border-4 border-purple-800': shoppingForm.tag === 'M',
+          }"
+          >Marché</label
+        >
         <input
           type="radio"
           id="M"
@@ -39,6 +63,7 @@
           v-model="shoppingForm.tag"
           name="shoppingTag"
           required
+          class="hidden"
         />
       </div>
 

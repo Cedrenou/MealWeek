@@ -15,9 +15,11 @@
     <main
       class="container flex-grow flex-col mx-auto p-6 flex items-center justify-center"
     >
-      <WeeklyMenu />
-
-      <MealForm />
+      <div class="flex flew-row gap-10">
+        <WeeklyMenu />
+        <ShoppingList />
+      </div>
+      <MealForm v-if="false" />
     </main>
 
     <footer class="py-4 mt-8 text-center text-gray-500">
@@ -29,4 +31,5 @@
 <script setup>
 import WeeklyMenu from "@/components/WeeklyMenu.vue";
 import MealForm from "@/components/MealForm.vue";
+import ShoppingList from "@/components/ShoppingList.vue";
 </script>

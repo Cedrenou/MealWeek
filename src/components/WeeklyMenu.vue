@@ -14,13 +14,13 @@
 
     <tbody>
       <tr v-for="mealTime in ['lunch', 'dinner']" :key="mealTime">
-        <th class="border-purple-950 border-l-0 border-2">
+        <th class="border-purple-950 border-l-0 border-2 border-b-0">
           {{ mealTime === "lunch" ? "Midi" : "Soir" }}
         </th>
         <td
           v-for="day in mockMenu"
           :key="`${mealTime}-${day.id}`"
-          class="border-purple-950 border-2 last-of-type:border-r-0 p-2 cursor-pointer hover:animate-pulse"
+          class="border-purple-950 border-2 last-of-type:border-r-0 p-2 cursor-pointer hover:animate-pulse border-b-0"
           @click="openFormModal(mealTime, day.date)"
         >
           <p>{{ day.lunch.meal }}</p>

@@ -13,7 +13,7 @@
     </header>
 
     <main
-      class="container flex-grow mx-auto p-6 flex items-center justify-center"
+      class="container flex-grow flex-col mx-auto p-6 flex items-center justify-center"
     >
       <WeeklyMenu />
 

@@ -18,12 +18,12 @@
           {{ mealTime === "lunch" ? "Midi" : "Soir" }}
         </th>
         <td
-          v-for="day in mockMenu"
+          v-for="(day, index) in weeklyMenu"
           :key="`${mealTime}-${day.id}`"
           class="border-purple-950 border-2 last-of-type:border-r-0 p-2 cursor-pointer hover:animate-pulse border-b-0"
-          @click="openFormModal(mealTime, day.date)"
+          @click="$emit('openFormModal', mealTime, day.date, index)"
         >
-          <p>{{ day.lunch.meal }}</p>
+          <p>{{ day[mealTime].meal }}</p>
           <a
             v-if="day[mealTime].url"
             :href="day[mealTime].url"
@@ -38,7 +38,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+defineProps(["weeklyMenu"]);
+defineEmits(["openFormModal"]);
 
 const days = [
   "",
@@ -50,96 +51,4 @@ const days = [
   "Samedi",
   "Dimanche",
 ];
-
-function openFormModal(mealTime, date) {
-  console.log("Meal Time :", mealTime);
-  console.log("Date :", date);
-}
-
-const mockMenu = ref([
-  {
-    id: 1,
-    date: new Date("2024-08-26"), // Lundi 26 Aout 2024
-    lunch: {
-      meal: "Spaghettis aux tomates cerises, crème de citron et amandes",
-      url: "",
-    },
-    dinner: {
-      meal: "Salade de chevre chaud",
-      url: "",
-    },
-  },
-  {
-    id: 2,
-    date: new Date("2024-08-27"), // Lundi 26 Aout 2024
-    lunch: {
-      meal: "Quiche sarrasin aux poivrons & chevres frais",
-      url: "",
-    },
-    dinner: {
-      meal: "Spaghettis aux tomates cerises, crème de citron et amandes",
-      url: "",
-    },
-  },
-  {
-    id: 3,
-    date: new Date("2024-08-28"), // Lundi 26 Aout 2024
-    lunch: {
-      meal: "sauté de dinde & légume roti",
-      url: "",
-    },
-    dinner: {
-      meal: "Spaghettis aux tomates cerises, crème de citron et amandes",
-      url: "",
-    },
-  },
-  {
-    id: 4,
-    date: new Date("2024-08-29"), // Lundi 26 Aout 2024
-    lunch: {
-      meal: "Poke Bowl",
-      url: "",
-    },
-    dinner: {
-      meal: "Quiche sarrasin aux poivrons & chevres frais",
-      url: "",
-    },
-  },
-  {
-    id: 5,
-    date: new Date("2024-08-30"), // Lundi 26 Aout 2024
-    lunch: {
-      meal: "Pizza de la mama",
-      url: "",
-    },
-    dinner: {
-      meal: "lorem ipsum para ",
-      url: "",
-    },
-  },
-  {
-    id: 6,
-    date: new Date("2024-08-31"), // Lundi 26 Aout 2024
-    lunch: {
-      meal: "Boulettes au boeuf, skyr & salade d'été",
-      url: "",
-    },
-    dinner: {
-      meal: "Riz saumon & légume roti",
-      url: "",
-    },
-  },
-  {
-    id: 7,
-    date: new Date("2024-09-01"), // Lundi 26 Aout 2024
-    lunch: {
-      meal: "Riz saumon & légume roti",
-      url: "https://app.jow.com/nf5e/?action=recipe&recipeId=666feef3d5a779000e2dde03&source=jow",
-    },
-    dinner: {
-      meal: "Pasta pesto de roquette",
-      url: "",
-    },
-  },
-]);
 </script>

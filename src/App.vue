@@ -16,10 +16,19 @@
       class="container flex-grow flex-col mx-auto p-6 flex items-center justify-center"
     >
       <div class="flex flew-row gap-10">
-        <WeeklyMenu />
+        <WeeklyMenu :weekly-menu="mockMenu" @open-form-modal="openFormModal" />
         <ShoppingList />
       </div>
-      <MealForm v-if="false" />
+
+      <MealForm
+        v-if="isMealFormVisible"
+        @close-form-modal="closeFormModal"
+        @save-meal="saveMeal"
+        :meal-form="mealForm"
+        :day="dayRef"
+        :meal-time="mealTimeRef"
+        :meal-index="mealIndexRef"
+      />
     </main>
 
     <footer class="py-4 mt-8 text-center text-gray-500">
@@ -32,4 +41,134 @@
 import WeeklyMenu from "@/components/WeeklyMenu.vue";
 import MealForm from "@/components/MealForm.vue";
 import ShoppingList from "@/components/ShoppingList.vue";
+import { ref } from "vue";
+import dayjs from "dayjs";
+import "dayjs/locale/fr";
+
+dayjs.locale("fr");
+
+const isMealFormVisible = ref(false);
+
+const mealTimeRef = ref("");
+const dayRef = ref("");
+const mealIndexRef = ref(0);
+
+const mealForm = ref({
+  mealName: "",
+  mealUrl: "",
+});
+
+const mockMenu = ref([
+  {
+    id: 1,
+    date: new Date("2024-08-26"),
+    lunch: {
+      meal: "",
+      url: "",
+    },
+    dinner: {
+      meal: "Salade de chevre chaud",
+      url: "",
+    },
+  },
+  {
+    id: 2,
+    date: new Date("2024-08-27"),
+    lunch: {
+      meal: "Quiche sarrasin aux poivrons & chevres frais",
+      url: "",
+    },
+    dinner: {
+      meal: "Spaghettis aux tomates cerises, crème de citron et amandes",
+      url: "",
+    },
+  },
+  {
+    id: 3,
+    date: new Date("2024-08-28"),
+    lunch: {
+      meal: "sauté de dinde & légume roti",
+      url: "",
+    },
+    dinner: {
+      meal: "Spaghettis aux tomates cerises, crème de citron et amandes",
+      url: "",
+    },
+  },
+  {
+    id: 4,
+    date: new Date("2024-08-29"),
+    lunch: {
+      meal: "Poke Bowl",
+      url: "",
+    },
+    dinner: {
+      meal: "Quiche sarrasin aux poivrons & chevres frais",
+      url: "",
+    },
+  },
+  {
+    id: 5,
+    date: new Date("2024-08-30"),
+    lunch: {
+      meal: "Pizza de la mama",
+      url: "",
+    },
+    dinner: {
+      meal: "lorem ipsum para ",
+      url: "",
+    },
+  },
+  {
+    id: 6,
+    date: new Date("2024-08-31"),
+    lunch: {
+      meal: "Boulettes au boeuf, skyr & salade d'été",
+      url: "",
+    },
+    dinner: {
+      meal: "Riz saumon & légume roti",
+      url: "",
+    },
+  },
+  {
+    id: 7,
+    date: new Date("2024-09-01"),
+    lunch: {
+      meal: "Riz saumon & légume roti",
+      url: "https://app.jow.com/nf5e/?action=recipe&recipeId=666feef3d5a779000e2dde03&source=jow",
+    },
+    dinner: {
+      meal: "Pasta pesto de roquette",
+      url: "",
+    },
+  },
+]);
+
+const saveMeal = (meal, mealTime, mealIndex) => {
+  mockMenu.value[mealIndex][mealTime].meal = meal.mealName;
+  mockMenu.value[mealIndex][mealTime].url = meal.mealUrl;
+
+  clearForm();
+  isMealFormVisible.value = false;
+};
+
+const clearForm = () => {
+  mealForm.value = {
+    mealName: "",
+    mealUrl: "",
+  };
+};
+
+const openFormModal = (mealTime, date, index) => {
+  mealTimeRef.value = mealTime;
+  dayRef.value = dayjs(date).format("dddd");
+  mealIndexRef.value = index;
+
+  isMealFormVisible.value = true;
+};
+
+const closeFormModal = () => {
+  isMealFormVisible.value = false;
+};
 </script>

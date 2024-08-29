@@ -165,6 +165,11 @@ const openFormModal = (mealTime, date, index) => {
   dayRef.value = dayjs(date).format("dddd");
   mealIndexRef.value = index;
 
+  mealForm.value = {
+    mealName: mockMenu.value[index][mealTime].meal,
+    mealUrl: mockMenu.value[index][mealTime].url,
+  };
+
   isMealFormVisible.value = true;
 };
 

@@ -67,7 +67,7 @@ const mockMenu = ref([
       url: "",
     },
     dinner: {
-      meal: "Salade de chevre chaud",
+      meal: "",
       url: "",
     },
   },
@@ -75,11 +75,11 @@ const mockMenu = ref([
     id: 2,
     date: new Date("2024-08-27"),
     lunch: {
-      meal: "Quiche sarrasin aux poivrons & chevres frais",
+      meal: "",
       url: "",
     },
     dinner: {
-      meal: "Spaghettis aux tomates cerises, crème de citron et amandes",
+      meal: "",
       url: "",
     },
   },
@@ -87,11 +87,11 @@ const mockMenu = ref([
     id: 3,
     date: new Date("2024-08-28"),
     lunch: {
-      meal: "sauté de dinde & légume roti",
+      meal: "",
       url: "",
     },
     dinner: {
-      meal: "Spaghettis aux tomates cerises, crème de citron et amandes",
+      meal: "",
       url: "",
     },
   },
@@ -99,11 +99,11 @@ const mockMenu = ref([
     id: 4,
     date: new Date("2024-08-29"),
     lunch: {
-      meal: "Poke Bowl",
+      meal: "",
       url: "",
     },
     dinner: {
-      meal: "Quiche sarrasin aux poivrons & chevres frais",
+      meal: "",
       url: "",
     },
   },
@@ -111,11 +111,11 @@ const mockMenu = ref([
     id: 5,
     date: new Date("2024-08-30"),
     lunch: {
-      meal: "Pizza de la mama",
+      meal: "",
       url: "",
     },
     dinner: {
-      meal: "lorem ipsum para ",
+      meal: "",
       url: "",
     },
   },
@@ -123,11 +123,11 @@ const mockMenu = ref([
     id: 6,
     date: new Date("2024-08-31"),
     lunch: {
-      meal: "Boulettes au boeuf, skyr & salade d'été",
+      meal: "",
       url: "",
     },
     dinner: {
-      meal: "Riz saumon & légume roti",
+      meal: "",
       url: "",
     },
   },
@@ -135,11 +135,11 @@ const mockMenu = ref([
     id: 7,
     date: new Date("2024-09-01"),
     lunch: {
-      meal: "Riz saumon & légume roti",
-      url: "https://app.jow.com/nf5e/?action=recipe&recipeId=666feef3d5a779000e2dde03&source=jow",
+      meal: "",
+      url: "",
     },
     dinner: {
-      meal: "Pasta pesto de roquette",
+      meal: "",
       url: "",
     },
   },

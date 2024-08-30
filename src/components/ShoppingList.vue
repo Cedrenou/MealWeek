@@ -1,5 +1,5 @@
 <template>
-  <div class="border-purple-950 border-2 p-8">
+  <div class="border-purple-950 border-2 p-8 rounded-lg">
     <h1 class="text-nowrap text-lg underline">Liste de courses</h1>
     <form @submit.prevent="addProduct" class="flex flex-col">
       <input

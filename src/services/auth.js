@@ -1,4 +1,3 @@
-// src/auth.js
 import { supabase } from "./supabase";
 
 export const signUp = async (email, password) => {

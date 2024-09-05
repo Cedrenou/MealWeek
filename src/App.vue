@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="app"
-    class="px-4 border-2 border-amber-400 flex flex-col min-h-screen bg-primary"
-  >
+  <div id="app" class="px-4 flex flex-col min-h-screen bg-primary">
     <header class="py-4 flex flex-row align-middle items-center">
       <img
         src="./assets/images/mealweek-logo.webp"
@@ -15,20 +12,27 @@
     <main
       class="container flex-grow flex-col mx-auto p-6 flex items-center justify-center"
     >
+      <Auth />
       <div class="flex flew-row gap-10">
         <WeeklyMenu :weekly-menu="mockMenu" @open-form-modal="openFormModal" />
         <ShoppingList />
       </div>
 
-      <MealForm
+      <div
         v-if="isMealFormVisible"
-        @close-form-modal="closeFormModal"
-        @save-meal="saveMeal"
-        :meal-form="mealForm"
-        :day="dayRef"
-        :meal-time="mealTimeRef"
-        :meal-index="mealIndexRef"
-      />
+        class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
+      ></div>
+      <Modal v-if="isMealFormVisible">
+        <MealForm
+          v-if="isMealFormVisible"
+          @close-form-modal="closeFormModal"
+          @save-meal="saveMeal"
+          :meal-form="mealForm"
+          :day="dayRef"
+          :meal-time="mealTimeRef"
+          :meal-index="mealIndexRef"
+        />
+      </Modal>
     </main>
 
     <footer class="py-4 mt-8 text-center text-gray-500">
@@ -38,12 +42,15 @@
 </template>
 
 <script setup>
+import Auth from "@/components/Auth.vue";
 import WeeklyMenu from "@/components/WeeklyMenu.vue";
 import MealForm from "@/components/MealForm.vue";
 import ShoppingList from "@/components/ShoppingList.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
+import Modal from "@/components/UI/Modal.vue";
+import { supabase } from "@/services/supabase.js";
 
 dayjs.locale("fr");
 
@@ -57,6 +64,18 @@ const mealForm = ref({
   mealName: "",
   mealUrl: "",
 });
+
+const weeklyMenu = ref([]);
+
+const fetchWeeklyMenu = async () => {
+  const { data, error } = await supabase.from("weekly_menu").select("*");
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(data);
+    weeklyMenu.value = data;
+  }
+};
 
 const mockMenu = ref([
   {
@@ -176,4 +195,8 @@ const openFormModal = (mealTime, date, index) => {
 const closeFormModal = () => {
   isMealFormVisible.value = false;
 };
+
+onMounted(() => {
+  fetchWeeklyMenu();
+});
 </script>

@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="max-w-2xl rounded-md flex flex-col overflow-hidden shadow-2xl p-4 space-y-4 border-2 border-purple-950"
-  >
+  <div class="flex flex-col">
     <h1 class="text-lg font-bold text-center capitalize">
       {{ day }} - {{ mealTime }}
     </h1>

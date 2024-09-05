@@ -105,7 +105,6 @@ const shoppingForm = ref({
 const shoppingList = ref([]);
 
 const addProduct = () => {
-  console.log("ajouté produit", shoppingForm.value);
   shoppingList.value.push({ ...shoppingForm.value });
 
   shoppingForm.value.name = "";
